@@ -60,11 +60,12 @@ install() {
 
 }
 
+install "MacEditorInstaller/Unity-$VERSION.pkg"
+install "MacEditorTargetInstaller/UnitySetup-iOS-Support-for-Editor-$VERSION.pkg"
 
+#echo "Contents of Unity Download Cache:"
+#ls $UNITY_DOWNLOAD_CACHE
 
-echo "Contents of Unity Download Cache:"
-ls $UNITY_DOWNLOAD_CACHE
-
-echo "Installing Unity..."
-install $UNITY_OSX_PACKAGE_URL
-install $UNITY_WINDOWS_TARGET_PACKAGE_URL
+#echo "Installing Unity..."
+#install $UNITY_OSX_PACKAGE_URL
+#install $UNITY_WINDOWS_TARGET_PACKAGE_URL
