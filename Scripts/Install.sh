@@ -21,13 +21,21 @@ download() {
    	 fileName=`basename "$file"`
 	
 	# Downloads a package if it does not already exist in cache
-	if [ ! -e $UNITY_DOWNLOAD_CACHE/`basename "$URL"` ] ; then
-		echo "$FILE does not exist. Downloading from $URL: "
-		mkdir -p "$UNITY_DOWNLOAD_CACHE"
-		curl -o $UNITY_DOWNLOAD_CACHE/`basename "$URL"` "$URL"
-	else
-		echo "$FILE Exists. Skipping download."
-	fi
+	#if [ ! -e $UNITY_DOWNLOAD_CACHE/`basename "$URL"` ] ; then
+	#	echo "$FILE does not exist. Downloading from $URL: "
+	#	mkdir -p "$UNITY_DOWNLOAD_CACHE"
+	#	curl -o $UNITY_DOWNLOAD_CACHE/`basename "$URL"` "$URL"
+	#else
+	#	echo "$FILE Exists. Skipping download."
+	#fi
+	
+	
+    if [ ! -e $filePath ] ; then
+        echo "Downloading $filePath from $url: "
+        curl --retry 5 -o "$filePath" "$url"
+    else
+        echo "$fileName exists in cache. Skipping download."
+    fi
 }
 
 # Downloads and installs a package from an internet URL
