@@ -2,7 +2,7 @@
 
 # See https://unity3d.com/get-unity/download/archive
 # to get download URLs
-UNITY_DOWNLOAD_CACHE="$(pwd)/unity_download_cache"
+# UNITY_DOWNLOAD_CACHE="$(pwd)/unity_download_cache"
 UNITY_OSX_PACKAGE_URL="https://download.unity3d.com/download_unity/20c1667945cf/MacEditorInstaller/Unity-2019.2.0f1.pkg"
 # UNITY_WINDOWS_TARGET_PACKAGE_URL="https://beta.unity3d.com/download/20c1667945cf/MacEditorTargetInstaller/UnitySetup-Windows-Support-for-Editor-2019.2.0f1.pkg"
 
