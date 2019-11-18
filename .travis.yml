@@ -10,7 +10,7 @@ cache:
 
     
 before_install:
-- chmod a+x ./Scripts/*.sh
+- chmod -R a+x ./Scripts/*.sh
 
 install:
 - cat /etc/hosts
