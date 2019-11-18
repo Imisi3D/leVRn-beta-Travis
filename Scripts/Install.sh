@@ -60,8 +60,8 @@ install() {
 
 }
 
-install "MacEditorInstaller/Unity-$VERSION.pkg"
-install "MacEditorTargetInstaller/UnitySetup-iOS-Support-for-Editor-$VERSION.pkg"
+sudo install "MacEditorInstaller/Unity-$VERSION.pkg"
+sudo install "MacEditorTargetInstaller/UnitySetup-iOS-Support-for-Editor-$VERSION.pkg"
 
 #echo "Contents of Unity Download Cache:"
 #ls $UNITY_DOWNLOAD_CACHE
