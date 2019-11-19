@@ -6,66 +6,12 @@
 # UNITY_OSX_PACKAGE_URL="https://download.unity3d.com/download_unity/20c1667945cf/MacEditorInstaller/Unity-2019.2.0f1.pkg"
 # UNITY_WINDOWS_TARGET_PACKAGE_URL="https://beta.unity3d.com/download/20c1667945cf/MacEditorTargetInstaller/UnitySetup-Windows-Support-for-Editor-2019.2.0f1.pkg"
 
-BASE_URL=https://netstorage.unity3d.com/unity
-HASH=20c1667945cf
-VERSION=2019.2.0f1
+# Example install script for Unity3D project. See the entire example: https://github.com/JonathanPorta/ci-build
 
-# function to get file
+# This link changes from time to time. I haven't found a reliable hosted installer package for doing regular
+# installs like this. You will probably need to grab a current link from: http://unity3d.com/get-unity/download/archive
+echo 'Downloading from https://download.unity3d.com/download_unity/20c1667945cf/MacEditorInstaller/Unity-2019.2.0f1.pkg: '
+curl -o Unity.pkg https://download.unity3d.com/download_unity/20c1667945cf/MacEditorInstaller/Unity-2019.2.0f1.pkg
 
-getFileName() {
-    echo "${UNITY_DOWNLOAD_CACHE}/`basename "$1"`"
-}
-
-# Downloads a file if it does not exist
-download() {
-
-	file=$1
-    	url="$BASE_URL/$HASH/$file"
-    	filePath=$(getFileName $file)
-    	fileName=`basename "$file"`
-	
-	# Downloads a package if it does not already exist in cache
-	#if [ ! -e $UNITY_DOWNLOAD_CACHE/`basename "$URL"` ] ; then
-	#	echo "$FILE does not exist. Downloading from $URL: "
-	#	mkdir -p "$UNITY_DOWNLOAD_CACHE"
-	#	curl -o $UNITY_DOWNLOAD_CACHE/`basename "$URL"` "$URL"
-	#else
-	#	echo "$FILE Exists. Skipping download."
-	#fi
-	
-	
-    if [ ! -e $filePath ] ; then
-        echo "Downloading $filePath from $url: "
-        curl --retry 5 -o "$filePath" "$url"
-    else
-        echo "$fileName exists in cache. Skipping download."
-    fi
-}
-
-# Downloads and installs a package from an internet URL
-install() {
-	# PACKAGE_URL=$1
-	# download $1
-
-	# echo "Installing `basename "$PACKAGE_URL"`"
-	# sudo installer -dumplog -package $UNITY_DOWNLOAD_CACHE/`basename "$PACKAGE_URL"` -target /
-	
-	package=$1
-    	filePath=$(getFileName $package)
-
-   	download "$package"
-
-    	echo "Installing $filePath"
-    	sudo installer -dumplog -package "$filePath" -target /
-
-}
-
-sudo install "MacEditorInstaller/Unity-$VERSION.pkg"
-sudo install "MacEditorTargetInstaller/UnitySetup-iOS-Support-for-Editor-$VERSION.pkg"
-
-#echo "Contents of Unity Download Cache:"
-#ls $UNITY_DOWNLOAD_CACHE
-
-#echo "Installing Unity..."
-#install $UNITY_OSX_PACKAGE_URL
-#install $UNITY_WINDOWS_TARGET_PACKAGE_URL
+echo 'Installing Unity.pkg'
+sudo installer -dumplog -package Unity.pkg -target /
